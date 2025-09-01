@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coray General Trading - Building Excellence Since 2014</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #f56500;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Header Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 54, 93, 0.95);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(44, 82, 130, 0.8)), 
+                        url('./assets/corayhero.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, #f0f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .btn-custom {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--accent-color), #ff8c00);
+            border: none;
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 101, 0, 0.4);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Section Styles */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-color), #ff8c00);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .service-card, .project-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, var(--accent-color), #ff8c00);
+        }
+
+        .service-card:hover, .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            margin-left: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+            width: 40px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer h5 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                text-align: left;
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="bi bi-hammer me-2"></i>Coray General Trading
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content" data-aos="fade-right">
+                        <h1 class="display-4">Building Excellence Since 2014</h1>
+                        <p class="lead">Your trusted partner for construction, maintenance, renovations, and all building-related services in Kuruman and beyond.</p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="#services" class="btn btn-primary-custom btn-custom">Our Services</a>
+                            <a href="#contact" class="btn btn-outline-custom btn-custom">Get Quote</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="floating" data-aos="fade-left">
+                        <i class="bi bi-building display-1" style="color: rgba(255,255,255,0.1); font-size: 15rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-number" data-count="10">0</div>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-number" data-count="150">0</div>
+                        <p>Projects Completed</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-number" data-count="50">0</div>
+                        <p>Happy Clients</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-number" data-count="100">0</div>
+                        <p>Quality Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">About Coray General Trading</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">Building dreams with precision, reliability, and innovation</p>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h3 class="mb-4">Our Story</h3>
+                    <p class="mb-4">Established in February 2014, Coray General Trading has grown to become a trusted name in building maintenance, renovations, supplying, fencing, gardening, and landscaping services. Based in Kuruman, we operate throughout the region, bringing quality construction solutions to our clients.</p>
+                    
+                    <h4 class="mb-3">Our Mission</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Sharing ideas, strategies and best practices</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Remaining focused and sustained in the market as a leader</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Being the preferred company in general building services</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="row">
+                        <div class="col-6 mb-4">
+                            <div class="text-center p-3 rounded" style="background: var(--bg-light);">
+                                <i class="bi bi-award display-4 text-primary mb-3"></i>
+                                <h5>Quality Assured</h5>
+                                <p class="small">CIDB & NHBRC Registered</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="text-center p-3 rounded" style="background: var(--bg-light);">
+                                <i class="bi bi-people display-4 text-success mb-3"></i>
+                                <h5>Expert Team</h5>
+                                <p class="small">Skilled & Experienced</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="text-center p-3 rounded" style="background: var(--bg-light);">
+                                <i class="bi bi-clock display-4 text-warning mb-3"></i>
+                                <h5>On Time</h5>
+                                <p class="small">Timely Delivery</p>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="text-center p-3 rounded" style="background: var(--bg-light);">
+                                <i class="bi bi-shield-check display-4 text-info mb-3"></i>
+                                <h5>Safety First</h5>
+                                <p class="small">Health & Safety Compliant</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">Comprehensive construction and maintenance solutions</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <i class="bi bi-hammer service-icon"></i>
+                        <h4>Building Construction</h4>
+                        <p>Complete building construction services including bricklaying, plastering, tiling, and painting repairs with professional quality standards.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Bricklaying</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Plastering</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Tiling & Painting</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <i class="bi bi-wrench service-icon"></i>
+                        <h4>Plumbing Services</h4>
+                        <p>Professional plumbing solutions including water leak repairs, sewage pipe maintenance, and electrical geyser services.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Water Leak Repairs</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Sewage Pipes</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Drain Unblocking</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <i class="bi bi-shield service-icon"></i>
+                        <h4>Fencing & Security</h4>
+                        <p>Comprehensive fencing solutions including diamond mesh, gates, and palisade fencing for residential and commercial properties.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Diamond Mesh</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Gates Installation</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Palisade Fencing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <i class="bi bi-gear service-icon"></i>
+                        <h4>Civil Works</h4>
+                        <p>Professional civil engineering services including paving, water supply systems, and drainage establishment.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Paving</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Water Supply</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Drainage Systems</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <i class="bi bi-droplet service-icon"></i>
+                        <h4>Waterproofing</h4>
+                        <p>Expert waterproofing solutions to protect your property from water damage and ensure long-lasting durability.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Roof Waterproofing</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Wall Waterproofing</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Basement Protection</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <i class="bi bi-tools service-icon"></i>
+                        <h4>General Carpentry</h4>
+                        <p>Day-to-day maintenance and repairs of roofs, ceilings, doors, windows, floors, and general carpentry work.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success me-2"></i>Roof Repairs</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Door & Window Repair</li>
+                            <li><i class="bi bi-check text-success me-2"></i>Floor Maintenance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">Recent Projects</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">Showcasing our completed work and satisfied clients</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <h4 class="mb-3">Bothithong HS Large Ablution Block</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-success fs-6">Completed</span>
+                            <span class="text-muted">John Taolo Gaetsewe Development Trust</span>
+                        </div>
+                        <p class="mb-3">Construction of a large ablution block for Bothithong High School, providing essential facilities for students and staff.</p>
+                        <div class="project-stats">
+                            <small class="text-muted">Project Value: <strong>R2,265,200.00</strong></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <h4 class="mb-3">School Repairs Project</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-success fs-6">Completed</span>
+                            <span class="text-muted">Otshepeng Electrical</span>
+                        </div>
+                        <p class="mb-3">Sub-contract repairs at Bareki Primary School and Gatalwatlou Middle School, ensuring safe learning environments.</p>
+                        <div class="project-stats">
+                            <small class="text-muted">Project Value: <strong>R764,000.00</strong></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card">
+                        <h4 class="mb-3">Thaganyane Primary School</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-success fs-6">Completed</span>
+                            <span class="text-muted">Tumie G Construction</span>
+                        </div>
+                        <p class="mb-3">Sub-contract for construction of ablution block at Thaganyane Primary School, improving school infrastructure.</p>
+                        <div class="project-stats">
+                            <small class="text-muted">Project Value: <strong>R568,940.00</strong></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-card">
+                        <h4 class="mb-3">Steel Frame Manufacturing</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-success fs-6">Completed</span>
+                            <span class="text-muted">Kolomela Iron Ore Mine</span>
+                        </div>
+                        <p class="mb-3">Manufacturing and installation of steel frames for industrial applications at Kolomela Iron Ore Mine.</p>
+                        <div class="project-stats">
+                            <small class="text-muted">Project Value: <strong>R247,410.00</strong></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">Ready to start your next project? Contact us today</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Contact Information</h4>
+                        
+                        <div class="contact-item">
+                            <i class="bi bi-person-circle contact-icon"></i>
+                            <div>
+                                <h6 class="mb-1">Operations Director</h6>
+                                <p class="mb-0">Ontisitse Raymond Chiri</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="bi bi-telephone contact-icon"></i>
+                            <div>
+                                <h6 class="mb-1">Phone Numbers</h6>
+                                <p class="mb-0">073 337 6026 | 061 447 5108</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="bi bi-envelope contact-icon"></i>
+                            <div>
+                                <h6 class="mb-1">Email</h6>
+                                <p class="mb-0">coraygt14@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="bi bi-geo-alt contact-icon"></i>
+                            <div>
+                                <h6 class="mb-1">Physical Address</h6>
+                                <p class="mb-0">Promise Land, Thuli Madonsela Section<br>Kuruman, 8460</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="bi bi-mailbox contact-icon"></i>
+                            <div>
+                                <h6 class="mb-1">Postal Address</h6>
+                                <p class="mb-0">P.O Box 636, Kuruman, 8460</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="bi bi-printer contact-icon"></i>
+                            <div>
+                                <h6 class="mb-1">Fax</h6>
+                                <p class="mb-0">086 263 6155</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h5 class="mb-3">Professional Registrations</h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="text-center p-2 rounded" style="background: white;">
+                                        <i class="bi bi-award text-primary mb-2 d-block"></i>
+                                        <small><strong>CIDB</strong><br>10042164</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center p-2 rounded" style="background: white;">
+                                        <i class="bi bi-house text-success mb-2 d-block"></i>
+                                        <small><strong>NHBRC</strong><br>1-203471351</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <form class="contact-form bg-white p-4 rounded-3 shadow-sm">
+                        <h4 class="mb-4">Send us a Message</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="service" class="form-label">Service Needed</label>
+                                <select class="form-control" id="service">
+                                    <option>Select a service</option>
+                                    <option>Building Construction</option>
+                                    <option>Plumbing Services</option>
+                                    <option>Fencing & Security</option>
+                                    <option>Civil Works</option>
+                                    <option>Waterproofing</option>
+                                    <option>General Carpentry</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Project Details *</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Please describe your project requirements..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom btn-custom w-100">
+                            <i class="bi bi-send me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="bi bi-hammer me-2"></i>Coray General Trading</h5>
+                    <p class="mb-3">Your trusted partner for all construction and maintenance needs since 2014. We deliver quality, reliability, and excellence in every project.</p>
+                    <div class="d-flex gap-3">
+                        <a href="tel:0733376026" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-telephone"></i>
+                        </a>
+                        <a href="mailto:coraygt14@gmail.com" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-geo-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services">Construction</a></li>
+                        <li><a href="#services">Plumbing</a></li>
+                        <li><a href="#services">Fencing</a></li>
+                        <li><a href="#services">Civil Works</a></li>
+                        <li><a href="#services">Waterproofing</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5>Company Details</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><strong>Registration:</strong> 2014/041038/07</li>
+                        <li class="mb-2"><strong>Income Tax:</strong> 9299566191</li>
+                        <li class="mb-2"><strong>VAT Number:</strong> 4910303652</li>
+                        <li class="mb-2"><strong>CIDB:</strong> 10042164</li>
+                        <li class="mb-2"><strong>NHBRC:</strong> 1-203471351</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Coray General Trading (Pty) Ltd. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">
+                        Professional • Reliable • Quality Assured
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="btn btn-primary-custom position-fixed bottom-0 end-0 m-4 rounded-circle" style="display: none; z-index: 1000; width: 50px; height: 50px;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Stats counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (target === 100) {
+                        counter.textContent = Math.floor(current) + '%';
+                    } else {
+                        counter.textContent = Math.floor(current) + '+';
+                    }
+                }, 16);
+            });
+        }
+
+        // Intersection Observer for stats animation
+        const statsSection = document.querySelector('.stats-section');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Contact form handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Show success message
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Message Sent!';
+            submitBtn.disabled = true;
+            submitBtn.classList.remove('btn-primary-custom');
+            submitBtn.classList.add('btn', 'btn-success');
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('btn-success');
+                submitBtn.classList.add('btn-primary-custom');
+            }, 3000);
+        });
+
+        // Add hover effects to service cards
+        document.querySelectorAll('.service-card, .project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Loading animation for page elements
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.fade-in').forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Mobile menu close on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    document.querySelector('.navbar-toggler').click();
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add active class to navigation links based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

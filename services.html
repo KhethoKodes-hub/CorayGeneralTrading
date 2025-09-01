@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Coray General Trading</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #f56500;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Header Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 54, 93, 0.95);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .services-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(44, 82, 130, 0.8)), 
+                        url('./assets/coraysite.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb-item a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: var(--accent-color);
+        }
+
+        /* Section Styles */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-color), #ff8c00);
+            border-radius: 2px;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, var(--accent-color), #ff8c00);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style-type: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .service-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Process Section */
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-connector {
+            position: absolute;
+            top: 90px;
+            right: -30px;
+            width: 60px;
+            height: 2px;
+            background: var(--accent-color);
+            z-index: 1;
+        }
+
+        /* FAQ Section */
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(26, 54, 93, 0.05);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231a365d'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f56500'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer h5 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .process-connector {
+                display: none;
+            }
+            
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-hammer me-2"></i>Coray General Trading
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="services-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-content text-center">
+                        <h1 class="hero-title" data-aos="fade-up">Our Services</h1>
+                        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active">Services</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title center" data-aos="fade-up">Comprehensive Construction Solutions</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">Professional services for residential, commercial, and industrial projects</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <i class="bi bi-hammer service-icon"></i>
+                        <h3>Building Construction</h3>
+                        <p>Complete building construction services with professional quality standards and attention to detail.</p>
+                        <ul class="service-features">
+                            <li>Bricklaying and masonry work</li>
+                            <li>Plastering and rendering</li>
+                            <li>Tiling and flooring</li>
+                            <li>Painting and finishing</li>
+                            <li>Structural repairs</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <i class="bi bi-wrench service-icon"></i>
+                        <h3>Plumbing Services</h3>
+                        <p>Professional plumbing solutions for residential and commercial properties.</p>
+                        <ul class="service-features">
+                            <li>Water leak detection and repairs</li>
+                            <li>Sewage pipe installation and maintenance</li>
+                            <li>Drain unblocking and cleaning</li>
+                            <li>Geyser installation and repairs</li>
+                            <li>Bathroom and kitchen plumbing</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <i class="bi bi-shield service-icon"></i>
+                        <h3>Fencing & Security</h3>
+                        <p>Comprehensive fencing solutions for enhanced security and property delineation.</p>
+                        <ul class="service-features">
+                            <li>Diamond mesh fencing</li>
+                            <li>Palisade fencing</li>
+                            <li>Gate installation and automation</li>
+                            <li>Security fence repairs</li>
+                            <li>Electric fencing</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <i class="bi bi-gear service-icon"></i>
+                        <h3>Civil Works</h3>
+                        <p>Professional civil engineering services for infrastructure development.</p>
+                        <ul class="service-features">
+                            <li>Paving and hard landscaping</li>
+                            <li>Water supply systems</li>
+                            <li>Drainage establishment</li>
+                            <li>Site preparation and grading</li>
+                            <li>Retaining walls</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <i class="bi bi-droplet service-icon"></i>
+                        <h3>Waterproofing</h3>
+                        <p>Expert waterproofing solutions to protect structures from water damage.</p>
+                        <ul class="service-features">
+                            <li>Roof waterproofing</li>
+                            <li>Wall waterproofing</li>
+                            <li>Basement waterproofing</li>
+                            <li>Bathroom and kitchen waterproofing</li>
+                            <li>Balcony and terrace waterproofing</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <i class="bi bi-tools service-icon"></i>
+                        <h3>General Carpentry</h3>
+                        <p>Day-to-day maintenance and repairs for residential and commercial properties.</p>
+                        <ul class="service-features">
+                            <li>Roof and ceiling repairs</li>
+                            <li>Door and window installation/repair</li>
+                            <li>Floor maintenance and repairs</li>
+                            <li>Custom woodworking</li>
+                            <li>Deck and pergola construction</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="service-card">
+                        <i class="bi bi-tree service-icon"></i>
+                        <h3>Gardening & Landscaping</h3>
+                        <p>Beautiful and functional outdoor spaces designed and maintained to perfection.</p>
+                        <ul class="service-features">
+                            <li>Garden design and installation</li>
+                            <li>Irrigation systems</li>
+                            <li>Lawn installation and maintenance</li>
+                            <li>Planting and pruning</li>
+                            <li>Garden cleanup</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="service-card">
+                        <i class="bi bi-house-gear service-icon"></i>
+                        <h3>Renovations</h3>
+                        <p>Transform your space with our professional renovation services.</p>
+                        <ul class="service-features">
+                            <li>Kitchen renovations</li>
+                            <li>Bathroom renovations</li>
+                            <li>Room additions</li>
+                            <li>Whole-house renovations</li>
+                            <li>Commercial space renovations</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="900">
+                    <div class="service-card">
+                        <i class="bi bi-clipboard-check service-icon"></i>
+                        <h3>Maintenance Services</h3>
+                        <p>Regular maintenance to keep your property in optimal condition.</p>
+                        <ul class="service-features">
+                            <li>Preventive maintenance programs</li>
+                            <li>Building inspections</li>
+                            <li>Facility management</li>
+                            <li>Emergency repairs</li>
+                            <li>Seasonal maintenance</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary mt-3">Request Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title center" data-aos="fade-up">Our Process</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">How we deliver exceptional results for every project</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                        <div class="step-number">1</div>
+                        <h4>Consultation</h4>
+                        <p>We discuss your needs, budget, and timeline to understand your project requirements.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="step-number">2</div>
+                        <div class="process-connector d-none d-md-block"></div>
+                        <h4>Planning</h4>
+                        <p>We create detailed plans, obtain necessary permits, and prepare for project execution.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="step-number">3</div>
+                        <div class="process-connector d-none d-md-block"></div>
+                        <h4>Execution</h4>
+                        <p>Our skilled team implements the project with precision, quality, and attention to detail.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                        <div class="step-number">4</div>
+                        <div class="process-connector d-none d-md-block"></div>
+                        <h4>Completion</h4>
+                        <p>We conduct final inspections, ensure your satisfaction, and provide after-service support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title center" data-aos="fade-up">Frequently Asked Questions</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">Find answers to common questions about our services</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="servicesFAQ">
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    How long does a typical construction project take?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Project timelines vary based on scope, size, and complexity. A small renovation might take 2-4 weeks, while a new construction project could take 3-6 months. During our initial consultation, we provide a detailed timeline for your specific project.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Are you licensed and insured?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Yes, we are fully licensed (CIDB: 10042164, NHBRC: 1-203471351) and insured. We carry comprehensive liability insurance and workers' compensation to protect our clients and our team throughout every project.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Do you provide free estimates?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Yes, we offer free, no-obligation estimates for all our services. We'll visit your property, discuss your needs, and provide a detailed written estimate outlining the scope of work and associated costs.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    What areas do you serve?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Based in Kuruman, we serve the entire Northern Cape region and surrounding areas. We have completed projects in Kathu, Upington, Postmasburg, and beyond. Contact us to confirm if we service your specific location.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    Do you offer warranties on your work?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Yes, we stand behind our workmanship. Most of our services come with a warranty period that varies by project type. Specific warranty details are provided in your contract. Additionally, our NHBRC registration provides additional protection for home building projects.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0 text-center text-lg-start">
+                    <h2 class="mb-3">Ready to Start Your Project?</h2>
+                    <p class="mb-0">Contact us today for a free consultation and quote on your construction needs.</p>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="index.html#contact" class="btn btn-light btn-lg">Get Free Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="bi bi-hammer me-2"></i>Coray General Trading</h5>
+                    <p class="mb-3">Your trusted partner for all construction and maintenance needs since 2014. We deliver quality, reliability, and excellence in every project.</p>
+                    <div class="d-flex gap-3">
+                        <a href="tel:0733376026" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-telephone"></i>
+                        </a>
+                        <a href="mailto:coraygt14@gmail.com" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-geo-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html">Construction</a></li>
+                        <li><a href="services.html">Plumbing</a></li>
+                        <li><a href="services.html">Fencing</a></li>
+                        <li><a href="services.html">Civil Works</a></li>
+                        <li><a href="services.html">Waterproofing</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5>Company Details</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><strong>Registration:</strong> 2014/041038/07</li>
+                        <li class="mb-2"><strong>Income Tax:</strong> 9299566191</li>
+                        <li class="mb-2"><strong>VAT Number:</strong> 4910303652</li>
+                        <li class="mb-2"><strong>CIDB:</strong> 10042164</li>
+                        <li class="mb-2"><strong>NHBRC:</strong> 1-203471351</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Coray General Trading (Pty) Ltd. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">
+                        Professional • Reliable • Quality Assured
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" style="display: none; z-index: 1000; width: 50px; height: 50px; background: var(--accent-color); border: none;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Add active class to navigation links
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

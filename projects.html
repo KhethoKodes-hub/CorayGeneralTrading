@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - Coray General Trading</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #f56500;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Header Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 54, 93, 0.95);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .projects-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(44, 82, 130, 0.8)), 
+                        url('./assets/construct.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb-item a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: var(--accent-color);
+        }
+
+        /* Section Styles */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-color), #ff8c00);
+            border-radius: 2px;
+        }
+
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .project-client {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .project-stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Project Modal */
+        .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: var(--primary-color);
+            color: white;
+            border-bottom: none;
+        }
+
+        .modal-body {
+            padding: 0;
+        }
+
+        .modal-project-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 25px;
+        }
+
+        .modal-detail-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .detail-icon {
+            width: 40px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-color), #ff8c00);
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer h5 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+                margin-bottom: 10px;
+            }
+            
+            .project-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-hammer me-2"></i>Coray General Trading
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="projects-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-content text-center">
+                        <h1 class="hero-title" data-aos="fade-up">Our Projects</h1>
+                        <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active">Projects</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title center" data-aos="fade-up">Our Portfolio</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">Showcasing our completed work and satisfied clients</p>
+                </div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="filter-buttons" data-aos="fade-up" data-aos-delay="200">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="construction">Construction</button>
+                        <button class="filter-btn" data-filter="renovation">Renovations</button>
+                        <button class="filter-btn" data-filter="fencing">Fencing</button>
+                        <button class="filter-btn" data-filter="plumbing">Plumbing</button>
+                        <button class="filter-btn" data-filter="civil">Civil Works</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="row" id="projects-grid">
+                <!-- Project 1 -->
+                <div class="col-lg-4 col-md-6 mb-4 project-item" data-category="construction" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bothithong HS Ablution Block">
+                            <span class="project-badge">Completed</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Bothithong HS Large Ablution Block</h3>
+                            <span class="project-client">John Taolo Gaetsewe Development Trust</span>
+                            <p>Construction of a large ablution block for Bothithong High School, providing essential facilities for students and staff.</p>
+                            <!--<div class="project-stats">
+                                <div class="project-stat">
+                                    <span class="stat-value">R2,265,200</span>
+                                    <span class="stat-label">Project Value</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">4 Months</span>
+                                    <span class="stat-label">Duration</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">2023</span>
+                                    <span class="stat-label">Completed</span>
+                                </div>
+                            </div>-->
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="1">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 project-item" data-category="renovation" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/school.png" alt="School Repairs Project">
+                            <span class="project-badge">Completed</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">School Repairs Project</h3>
+                            <span class="project-client">Otshepeng Electrical</span>
+                            <p>Sub-contract repairs at Bareki Primary School and Gatalwatlou Middle School, ensuring safe learning environments.</p>
+                            <!--<div class="project-stats">
+                                <div class="project-stat">
+                                    <span class="stat-value">R764,000</span>
+                                    <span class="stat-label">Project Value</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">3 Months</span>
+                                    <span class="stat-label">Duration</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">2022</span>
+                                    <span class="stat-label">Completed</span>
+                                </div>
+                            </div>-->
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="2">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 project-item" data-category="construction" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/steelframe.png" alt="Thaganyane Primary School">
+                            <span class="project-badge">Completed</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Thaganyane Primary School</h3>
+                            <span class="project-client">Tumie G Construction</span>
+                            <p>Sub-contract for construction of ablution block at Thaganyane Primary School, improving school infrastructure.</p>
+                            <!--<div class="project-stats">
+                                <div class="project-stat">
+                                    <span class="stat-value">R568,940</span>
+                                    <span class="stat-label">Project Value</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">2 Months</span>
+                                    <span class="stat-label">Duration</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">2022</span>
+                                    <span class="stat-label">Completed</span>
+                                </div>
+                            </div>-->
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="3">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="col-lg-4 col-md-6 mb-4 project-item" data-category="fencing" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/steelframe.png" alt="Steel Frame Manufacturing">
+                            <span class="project-badge">Completed</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Steel Frame Manufacturing</h3>
+                            <span class="project-client">Kolomela Iron Ore Mine</span>
+                            <p>Manufacturing and installation of steel frames for industrial applications at Kolomela Iron Ore Mine.</p>
+                            <!--<div class="project-stats">
+                                <div class="project-stat">
+                                    <span class="stat-value">R247,410</span>
+                                    <span class="stat-label">Project Value</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">1 Month</span>
+                                    <span class="stat-label">Duration</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">2021</span>
+                                    <span class="stat-label">Completed</span>
+                                </div>
+                            </div>-->
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="4">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="col-lg-4 col-md-6 mb-4 project-item" data-category="plumbing" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/plumbing.png" alt="Residential Plumbing Upgrade">
+                            <span class="project-badge">Completed</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Residential Plumbing Upgrade</h3>
+                            <span class="project-client">Private Residence, Kathu</span>
+                            <p>Complete plumbing system upgrade for a residential property including new piping and fixture installation.</p>
+                            <!--<div class="project-stats">
+                                <div class="project-stat">
+                                    <span class="stat-value">R185,000</span>
+                                    <span class="stat-label">Project Value</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">3 Weeks</span>
+                                    <span class="stat-label">Duration</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">2023</span>
+                                    <span class="stat-label">Completed</span>
+                                </div>
+                            </div>-->
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="5">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="col-lg-4 col-md-6 mb-4 project-item" data-category="civil" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="assets/paving.png" alt="Community Center Paving">
+                            <span class="project-badge">Completed</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Community Center Paving</h3>
+                            <span class="project-client">Kuruman Municipality</span>
+                            <p>Paving and landscaping work for a community center, creating accessible and attractive public spaces.</p>
+                            <!--<div class="project-stats">
+                                <div class="project-stat">
+                                    <span class="stat-value">R420,500</span>
+                                    <span class="stat-label">Project Value</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">6 Weeks</span>
+                                    <span class="stat-label">Duration</span>
+                                </div>
+                                <div class="project-stat">
+                                    <span class="stat-value">2022</span>
+                                    <span class="stat-label">Completed</span>
+                                </div>
+                            </div>-->
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#projectModal" data-project="6">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-number" data-count="150">0</div>
+                        <p>Projects Completed</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-number" data-count="50">0</div>
+                        <p>Happy Clients</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-number" data-count="10">0</div>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-number" data-count="100">0</div>
+                        <p>Quality Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0 text-center text-lg-start">
+                    <h2 class="mb-3">Ready to Start Your Project?</h2>
+                    <p class="mb-0">Contact us today for a free consultation and quote on your construction needs.</p>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="contact.html" class="btn btn-light btn-lg">Get Free Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalProjectTitle">Project Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalProjectImage" src="" alt="" class="modal-project-img">
+                    <div class="modal-details">
+                        <h4 id="modalProjectName" class="mb-3"></h4>
+                        <p id="modalProjectDescription" class="mb-4"></p>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="modal-detail-item">
+                                    <div class="detail-icon">
+                                        <i class="bi bi-building"></i>
+                                    </div>
+                                    <div>
+                                        <h6>Client</h6>
+                                        <p id="modalProjectClient"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="modal-detail-item">
+                                    <div class="detail-icon">
+                                        <i class="bi bi-cash-coin"></i>
+                                    </div>
+                                    <div>
+                                        <h6>Project Value</h6>
+                                        <p id="modalProjectValue"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="modal-detail-item">
+                                    <div class="detail-icon">
+                                        <i class="bi bi-calendar-event"></i>
+                                    </div>
+                                    <div>
+                                        <h6>Duration</h6>
+                                        <p id="modalProjectDuration"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="modal-detail-item">
+                                    <div class="detail-icon">
+                                        <i class="bi bi-check-circle"></i>
+                                    </div>
+                                    <div>
+                                        <h6>Status</h6>
+                                        <p id="modalProjectStatus"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h5 class="mb-3">Project Scope</h5>
+                        <ul id="modalProjectScope" class="mb-4">
+                        </ul>
+                        
+                        <h5 class="mb-3">Testimonial</h5>
+                        <blockquote class="blockquote">
+                            <p id="modalProjectTestimonial"></p>
+                            <footer class="blockquote-footer" id="modalProjectTestimonialAuthor"></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="bi bi-hammer me-2"></i>Coray General Trading</h5>
+                    <p class="mb-3">Your trusted partner for all construction and maintenance needs since 2014. We deliver quality, reliability, and excellence in every project.</p>
+                    <div class="d-flex gap-3">
+                        <a href="tel:0733376026" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-telephone"></i>
+                        </a>
+                        <a href="mailto:coraygt14@gmail.com" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-geo-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html">Construction</a></li>
+                        <li><a href="services.html">Plumbing</a></li>
+                        <li><a href="services.html">Fencing</a></li>
+                        <li><a href="services.html">Civil Works</a></li>
+                        <li><a href="services.html">Waterproofing</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Safety</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5>Company Details</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><strong>Registration:</strong> 2014/041038/07</li>
+                        <li class="mb-2"><strong>Income Tax:</strong> 9299566191</li>
+                        <li class="mb-2"><strong>VAT Number:</strong> 4910303652</li>
+                        <li class="mb-2"><strong>CIDB:</strong> 10042164</li>
+                        <li class="mb-2"><strong>NHBRC:</strong> 1-203471351</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Coray General Trading (Pty) Ltd. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">
+                        Professional • Reliable • Quality Assured
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle" style="display: none; z-index: 1000; width: 50px; height: 50px; background: var(--accent-color); border: none;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Project filtering
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Filter projects
+                document.querySelectorAll('.project-item').forEach(project => {
+                    if (filterValue === 'all' || project.getAttribute('data-category') === filterValue) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Stats counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (target === 100) {
+                        counter.textContent = Math.floor(current) + '%';
+                    } else {
+                        counter.textContent = Math.floor(current) + '+';
+                    }
+                }, 16);
+            });
+        }
+
+        // Intersection Observer for stats animation
+        const statsSection = document.querySelector('.stats-section');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Project modal data
+        const projects = {
+            1: {
+                title: "Bothithong HS Large Ablution Block",
+                image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                client: "John Taolo Gaetsewe Development Trust",
+                value: "R2,265,200.00",
+                duration: "4 Months",
+                status: "Completed (2023)",
+                description: "Construction of a large ablution block for Bothithong High School, providing essential facilities for students and staff. The project included modern sanitation facilities, accessibility features, and durable construction to withstand heavy use.",
+                scope: [
+                    "Site preparation and foundation work",
+                    "Brickwork and structural construction",
+                    "Plumbing and electrical installations",
+                    "Interior tiling and finishing",
+                    "Accessibility features implementation"
+                ],
+                testimonial: "Coray General Trading delivered an exceptional ablution facility that has significantly improved the school's infrastructure. Their attention to detail and commitment to quality was evident throughout the project.",
+                testimonialAuthor: "School Principal, Bothithong High School"
+            },
+            2: {
+                title: "School Repairs Project",
+                image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                client: "Otshepeng Electrical",
+                value: "R764,000.00",
+                duration: "3 Months",
+                status: "Completed (2022)",
+                description: "Sub-contract repairs at Bareki Primary School and Gatalwatlou Middle School, ensuring safe learning environments. The project involved multiple repair works across both school facilities.",
+                scope: [
+                    "Roof repairs and leak fixing",
+                    "Window and door replacements",
+                    "Classroom painting and refurbishment",
+                    "Flooring repairs and maintenance",
+                    "General carpentry work"
+                ],
+                testimonial: "The repair work completed by Coray General Trading has transformed our school facilities. They were professional, met all deadlines, and maintained high quality standards throughout the project.",
+                testimonialAuthor: "Project Manager, Otshepeng Electrical"
+            },
+            3: {
+                title: "Thaganyane Primary School",
+                image: "https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                client: "Tumie G Construction",
+                value: "R568,940.00",
+                duration: "2 Months",
+                status: "Completed (2022)",
+                description: "Sub-contract for construction of ablution block at Thaganyane Primary School, improving school infrastructure and sanitation facilities for students and staff.",
+                scope: [
+                    "Foundation and structural work",
+                    "Sanitation system installation",
+                    "Water supply connections",
+                    "Interior and exterior finishing",
+                    "Landscaping around the new structure"
+                ],
+                testimonial: "We were impressed with Coray's work ethic and quality of construction. They completed the project ahead of schedule while maintaining excellent standards.",
+                testimonialAuthor: "Director, Tumie G Construction"
+            },
+            4: {
+                title: "Steel Frame Manufacturing",
+                image: "https://images.unsplash.com/photo-1591955506264-3f5a6834570a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                client: "Kolomela Iron Ore Mine",
+                value: "R247,410.00",
+                duration: "1 Month",
+                status: "Completed (2021)",
+                description: "Manufacturing and installation of steel frames for industrial applications at Kolomela Iron Ore Mine. The project required precision engineering and adherence to strict safety standards.",
+                scope: [
+                    "Steel frame design and engineering",
+                    "Fabrication and manufacturing",
+                    "Surface treatment and protection",
+                    "Transportation to site",
+                    "Installation and securing"
+                ],
+                testimonial: "The steel frames manufactured by Coray General Trading met our exact specifications and quality requirements. Their team demonstrated expertise in industrial fabrication.",
+                testimonialAuthor: "Facilities Manager, Kolomela Iron Ore Mine"
+            },
+            5: {
+                title: "Residential Plumbing Upgrade",
+                image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                client: "Private Residence, Kathu",
+                value: "R185,000.00",
+                duration: "3 Weeks",
+                status: "Completed (2023)",
+                description: "Complete plumbing system upgrade for a residential property including new piping and fixture installation. The project modernized the home's plumbing infrastructure.",
+                scope: [
+                    "Removal of old plumbing systems",
+                    "Installation of new PVC and copper piping",
+                    "Fixture and faucet installation",
+                    "Water heater connection",
+                    "System testing and quality assurance"
+                ],
+                testimonial: "Coray's plumbing team did an excellent job upgrading our home's plumbing system. They were clean, professional, and completed the work with minimal disruption to our household.",
+                testimonialAuthor: "Homeowner, Kathu"
+            },
+            6: {
+                title: "Community Center Paving",
+                image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                client: "Kuruman Municipality",
+                value: "R420,500.00",
+                duration: "6 Weeks",
+                status: "Completed (2022)",
+                description: "Paving and landscaping work for a community center, creating accessible and attractive public spaces for community gatherings and events.",
+                scope: [
+                    "Site grading and preparation",
+                    "Paving stone installation",
+                    "Pathway and patio construction",
+                    "Drainage system implementation",
+                    "Landscaping and finishing touches"
+                ],
+                testimonial: "The paved areas at our community center have greatly enhanced the facility's appearance and functionality. Coray's team was professional and delivered quality workmanship.",
+                testimonialAuthor: "Municipal Manager, Kuruman Municipality"
+            }
+        };
+
+        // Project modal handling
+        const projectModal = document.getElementById('projectModal');
+        projectModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const projectId = button.getAttribute('data-project');
+            const project = projects[projectId];
+            
+            // Update modal content
+            document.getElementById('modalProjectTitle').textContent = project.title;
+            document.getElementById('modalProjectName').textContent = project.title;
+            document.getElementById('modalProjectImage').src = project.image;
+            document.getElementById('modalProjectImage').alt = project.title;
+            document.getElementById('modalProjectClient').textContent = project.client;
+            document.getElementById('modalProjectValue').textContent = project.value;
+            document.getElementById('modalProjectDuration').textContent = project.duration;
+            document.getElementById('modalProjectStatus').textContent = project.status;
+            document.getElementById('modalProjectDescription').textContent = project.description;
+            
+            // Update project scope
+            const scopeList = document.getElementById('modalProjectScope');
+            scopeList.innerHTML = '';
+            project.scope.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                scopeList.appendChild(li);
+            });
+            
+            // Update testimonial
+            document.getElementById('modalProjectTestimonial').textContent = project.testimonial;
+            document.getElementById('modalProjectTestimonialAuthor').textContent = project.testimonialAuthor;
+        });
+
+        // Add active class to navigation links
+        const currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
